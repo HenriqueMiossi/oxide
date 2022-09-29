@@ -1,6 +1,6 @@
 use std::io;
 use std::io::Write;
-use std::collections::LinkedList;
+use std::vec;
 
 fn main() {
     print!("Insert a number: ");
@@ -20,7 +20,7 @@ fn main() {
 
 fn is_prime(number: i32) {
     let mut is_prime = true;
-    let mut list = LinkedList::new();
+    let mut list = Vec::new();
 
     // Treats 1, 0 and negative numbers, which cannot be prime
     if number <= 1 {
@@ -31,7 +31,7 @@ fn is_prime(number: i32) {
     for i in 2..number {
         if number % i == 0 {
             is_prime = false;
-            list.push_back(i);
+            list.push(i);
         }
     }
 
