@@ -14,17 +14,31 @@ fn main() {
     number = number_str.trim().parse()
         .expect("Input is not a number");
 
-    is_prime(number);
+    let (is_prime, list) = is_prime(number);
+
+    if is_prime {
+        println!("The number is prime!");
+    } else {
+        println!("The number is not prime!");
+        print!("It is divisible by: ");
+        io::stdout().flush().unwrap();
+
+        for i in 0..list.len() {
+            print!("{}, ", list[i as usize]);
+            io::stdout().flush().unwrap();
+        }
+
+        println!("end");
+    }
 }
 
-fn is_prime(number: i32) {
+fn is_prime(number: i32) -> (bool, Vec<i32>) {
     let mut is_prime = true;
     let mut list = Vec::new();
 
     // Treats 1, 0 and negative numbers, which cannot be prime
     if number <= 1 {
-        println!("The number {number} is not prime!");
-        return;
+        return (false, list);
     }
 
     for i in 2..number {
@@ -35,11 +49,8 @@ fn is_prime(number: i32) {
     }
 
     if is_prime {
-        println!("The number {number} is prime!");
-        return;
+        return (true, list);
     } else {
-        println!("The number {number} is not prime!");
-        println!("The number is divisible by: {:?}", list);
-        return;
+        return (false, list);
     }
 }
