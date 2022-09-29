@@ -1,6 +1,5 @@
 use std::io;
 use std::io::Write;
-use std::vec;
 
 fn main() {
     print!("Insert a number: ");
